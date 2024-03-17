@@ -17,11 +17,11 @@ object Task:
   val isPositiveVerboseStyle: Int => String = (x: Int) =>
     x match
       case x if x >= 0 => "Positive"
-      case x => "Negative"
+      case _ => "Negative"
 
   val isPositiveCompatStyle: Int => String = {
     case x if x >= 0 => "Positive"
-    case x => "Negative"
+    case _ => "Negative"
   }
 
   def isPositiveMethod(i: Int): String =
@@ -74,10 +74,13 @@ object Shape
 object OptionalExtension:
   import task5.Optionals.Optional
   import task5.Optionals.Optional.*
-  
+
   def map[A, B](o: Optional[A])(f: A => B): Optional[B] =
     o match
       case Maybe(v) => Maybe(f(v))
-      case Empty() => Empty()
-      
-      
+      case _ => Empty()
+
+  def filter[A](o: Optional[A])(f: A => Boolean): Optional[A] =
+    o match
+      case Maybe(v) if f(v) => o
+      case _ => Empty()
