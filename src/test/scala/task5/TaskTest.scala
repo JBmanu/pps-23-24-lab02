@@ -74,3 +74,9 @@ class TaskTest:
     assertEquals(Circle(3 * alpha), scaling(circle, alpha))
     assertEquals(Square(4 * alpha), scaling(square, alpha))
 
+
+  @Test def mapOptional(): Unit =
+    import task5.OptionalExtension.map
+    import task5.Optionals.Optional.*
+    
+    assertEquals(Maybe(true), map(Maybe(6))(_ > 5))

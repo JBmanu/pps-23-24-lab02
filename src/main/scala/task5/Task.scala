@@ -53,21 +53,31 @@ object Task:
       case _ if a > b => gcd(b, a % b)
 
 object Shape
+  enum Shape:
+    case Rectangle(b: Double, h: Double)
+    case Circle(r: Double)
+    case Square(l: Double)
 
-enum Shape:
-  case Rectangle(b: Double, h: Double)
-  case Circle(r: Double)
-  case Square(l: Double)
+  def perimeter(s: Shape): Double =
+    s match
+      case Rectangle(b, h) => (2 * b) + (2 * h)
+      case Circle(r) => 2 * Math.PI * r
+      case Square(l) => l * 4
 
-def perimeter(s: Shape): Double =
-  s match
-    case Rectangle(b, h) => (2 * b) + (2 * h)
-    case Circle(r) => 2 * Math.PI * r
-    case Square(l) => l * 4
+  def scaling(s: Shape, a: Double): Shape =
+    s match
+      case Rectangle(b, h) => Rectangle(a * b, a * h)
+      case Circle(r) => Circle(a * r)
+      case Square(l) => Square(a * l)
 
-def scaling(s: Shape, a: Double): Shape =
-  s match
-    case Rectangle(b, h) => Rectangle(a * b, a * h)
-    case Circle(r) => Circle(a * r)
-    case Square(l) => Square(a * l)
+
+object OptionalExtension:
+  import task5.Optionals.Optional
+  import task5.Optionals.Optional.*
+  
+  def map[A, B](o: Optional[A])(f: A => B): Optional[B] =
+    o match
+      case Maybe(v) => Maybe(f(v))
+      case Empty() => Empty()
+      
       
