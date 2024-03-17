@@ -21,9 +21,10 @@ class TaskTest:
 
   @Test def negGenericFunction(): Unit =
     val isPositive: Int => Boolean = _ >= 0
+    val v = -1
 
     assertFalse(genericNeg(isEmpty)(""))
-    assertTrue(genericNeg(isPositive)(-1))
+    assertTrue(genericNeg(isPositive)(v))
 
   @Test def relationFunction(): Unit =
     val x = 5
@@ -77,13 +78,17 @@ class TaskTest:
   @Test def optionalMap(): Unit =
     import task5.OptionalExtension.map
     import task5.Optionals.Optional.*
-    
-    assertEquals(Maybe(true), map(Maybe(6))(_ > 5))
+
+    val x = Maybe(6)
+    val f: Int => Boolean = _ > 5
+    assertEquals(Maybe(true), map(x)(f))
 
   @Test def optionalFilter(): Unit =
     import task5.OptionalExtension.filter
     import task5.Optionals.Optional.*
 
-    assertEquals(Maybe(6), filter(Maybe(6))(_ > 5))
+    val v = Maybe(6)
+    val f: Int => Boolean = _ > 5
+    assertEquals(Maybe(6), filter(v)(f))
 
 
