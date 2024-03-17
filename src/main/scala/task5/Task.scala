@@ -40,3 +40,7 @@ object Task:
   val curriedFun: (Int => Int => Int => Boolean) = x => y => z => x <= y && y == z
 
   def curriedMethod(x: Int)(y: Int)(z: Int): Boolean = x <= y && y == z
+
+  val compositeFun: (Int => Int, Int => Int) => (Int => Int) = (f, g) => (x) => f(g(x))
+  
+  def genCompositeFun[A](f: A => A, g: A => A): A => A = x => f(g(x))

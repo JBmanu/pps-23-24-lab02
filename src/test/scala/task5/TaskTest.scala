@@ -40,3 +40,11 @@ class TaskTest:
     assertTrue(curriedMethod(x)(y)(z))
     assertFalse(curriedMethod(z)(y)(x))
 
+  @Test def compositeFunction(): Unit =
+    val x = 5
+    assertEquals(9, compositeFun(_ - 1, _ * 2)(x))
+
+    val f: Int => Int = x => x - 1
+    assertEquals(9, genCompositeFun(f, _ * 2)(x))
+
+
