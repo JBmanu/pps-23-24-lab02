@@ -5,6 +5,10 @@ import org.junit.*
 import task5.Shape.{Circle, Rectangle, Square}
 import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 
+object Task1 extends App:
+  val hello: String = "Hello, Scala"
+  println(hello)
+
 object Task2a:
   val isPositiveEqualStyle = (x: Int) =>
     x match
