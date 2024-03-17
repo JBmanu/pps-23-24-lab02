@@ -2,27 +2,27 @@ package task5
 
 object Task:
 
-  val isPositive = (x: Int) =>
+  val isPositiveEqualStyle = (x: Int) =>
     x match
       case x if x >= 0 => "Positive"
       case _ => "Negative"
 
-  val isPositive1: Int => String =
+  val isPositiveDoublePointStyle: Int => String =
     _ match
       case n if n >= 0 => "Positive"
       case _ => "Negative"
 
-  val isPositive2: Int => String = (x: Int) =>
+  val isPositiveVerboseStyle: Int => String = (x: Int) =>
     x match
       case x if x >= 0 => "Positive"
       case x => "Negative"
 
-  val isPositive3: Int => String = {
+  val isPositiveCompatStyle: Int => String = {
     case x if x >= 0 => "Positive"
     case x => "Negative"
   }
 
-  def isPositive4(i: Int): String =
+  def isPositiveMethod(i: Int): String =
     i match
       case n if n >= 0 => "Positive"
       case _ => "Negative"
