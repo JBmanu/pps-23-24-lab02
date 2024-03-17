@@ -62,16 +62,16 @@ object Task2a:
 
 
 object Task2b:
-  val notCurriedFun: (Int, Int, Int) => Boolean = (x, y, z) => x <= y && y == z
+  val p1: (Int, Int, Int) => Boolean = (x, y, z) => x <= y && y == z
 
-  def notCurriedMethod(x: Int, y: Int, z: Int): Boolean = (x <= y) && (y == z)
+  def p2(x: Int, y: Int, z: Int): Boolean = (x <= y) && (y == z)
 
-  val curriedFun: (Int => Int => Int => Boolean) = x => y => z => x <= y && y == z
+  val p3: (Int => Int => Int => Boolean) = x => y => z => x <= y && y == z
 
-  def curriedMethod(x: Int)(y: Int)(z: Int): Boolean = x <= y && y == z
+  def p4(x: Int)(y: Int)(z: Int): Boolean = x <= y && y == z
 
-  val compositeFun: (Int => Int, Int => Int) => (Int => Int) = (f, g) => (x) => f(g(x))
-  def genCompositeFun[A](f: A => A, g: A => A): A => A = x => f(g(x))
+  val compFun: (Int => Int, Int => Int) => (Int => Int) = (f, g) => (x) => f(g(x))
+  def genCompFun[A](f: A => A, g: A => A): A => A = x => f(g(x))
 
   class Task2bTest:
     @Test def relationFunction(): Unit =
@@ -79,21 +79,21 @@ object Task2b:
       val y = 6
       val z = 6
 
-      assertTrue(notCurriedFun(x, y, z))
-      assertFalse(notCurriedFun(z, y, x))
-      assertTrue(notCurriedMethod(x, y, z))
-      assertFalse(notCurriedMethod(z, y, x))
-      assertTrue(curriedFun(x)(y)(z))
-      assertFalse(curriedFun(z)(y)(x))
-      assertTrue(curriedMethod(x)(y)(z))
-      assertFalse(curriedMethod(z)(y)(x))
+      assertTrue(p1(x, y, z))
+      assertFalse(p1(z, y, x))
+      assertTrue(p2(x, y, z))
+      assertFalse(p2(z, y, x))
+      assertTrue(p3(x)(y)(z))
+      assertFalse(p3(z)(y)(x))
+      assertTrue(p4(x)(y)(z))
+      assertFalse(p4(z)(y)(x))
 
   @Test def compositeFunction(): Unit =
     val x = 5
-    assertEquals(9, compositeFun(_ - 1, _ * 2)(x))
+    assertEquals(9, compFun(_ - 1, _ * 2)(x))
 
     val f: Int => Int = x => x - 1
-    assertEquals(9, genCompositeFun(f, _ * 2)(x))
+    assertEquals(9, genCompFun(f, _ * 2)(x))
 
 
 object Task3
