@@ -19,6 +19,24 @@ class TaskTest:
     assertTrue(isEmpty(""))
     assertFalse(neg(isEmpty)(""))
     assertTrue(neg(isEmpty)("hello"))
-    
-    
-  
+
+  @Test def negGenericFunction(): Unit =
+    val isPositive: Int => Boolean = _ >= 0
+
+    assertFalse(genericNeg(isEmpty)(""))
+    assertTrue(genericNeg(isPositive)(-1))
+
+  @Test def relationFunction(): Unit =
+    val x = 5
+    val y = 6
+    val z = 6
+
+    assertTrue(notCurriedFun(x, y, z))
+    assertFalse(notCurriedFun(z, y, x))
+    assertTrue(notCurriedMethod(x, y, z))
+    assertFalse(notCurriedMethod(z, y, x))
+    assertTrue(curriedFun(x)(y)(z))
+    assertFalse(curriedFun(z)(y)(x))
+    assertTrue(curriedMethod(x)(y)(z))
+    assertFalse(curriedMethod(z)(y)(x))
+

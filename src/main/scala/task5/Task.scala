@@ -29,3 +29,14 @@ object Task:
 
   val isEmpty: String => Boolean = _ == ""
   val neg: (String => Boolean) => (String => Boolean) = p => s => !p(s)
+
+  def genericNeg[A](p: A => Boolean): A => Boolean = (a: A) => !p(a)
+
+
+  val notCurriedFun: (Int, Int, Int) => Boolean = (x, y, z) => x <= y && y == z
+
+  def notCurriedMethod(x: Int, y: Int, z: Int): Boolean = (x <= y) && (y == z)
+
+  val curriedFun: (Int => Int => Int => Boolean) = x => y => z => x <= y && y == z
+
+  def curriedMethod(x: Int)(y: Int)(z: Int): Boolean = x <= y && y == z
