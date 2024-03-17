@@ -3,7 +3,6 @@ package task5
 import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 import org.junit.Test
 
-
 class TaskTest:
 
   import Task.*
@@ -51,4 +50,27 @@ class TaskTest:
     assertEquals(4, gcd(12, 8))
     assertEquals(7, gcd(14, 7))
     assertEquals(1, gcd(12, 7))
+
+  @Test def perimeterShape(): Unit =
+    import task5.Shape.*
+
+    val rectangle = Rectangle(4d, 2d)
+    val circle = Circle(3d)
+    val square = Square(4d)
+
+    assertEquals(12.0d, perimeter(rectangle), 0.0d)
+    assertEquals(18.85d, perimeter(circle), 0.1d)
+    assertEquals(16.0d, perimeter(square), 0.0d)
+
+  @Test def scalingShape(): Unit =
+    import task5.Shape.*
+
+    val rectangle = Rectangle(4d, 2d)
+    val circle = Circle(3d)
+    val square = Square(4d)
+    val alpha = 2
+
+    assertEquals(Rectangle(4 * alpha, 2 * alpha), scaling(rectangle, alpha))
+    assertEquals(Circle(3 * alpha), scaling(circle, alpha))
+    assertEquals(Square(4 * alpha), scaling(square, alpha))
 
