@@ -42,5 +42,10 @@ object Task:
   def curriedMethod(x: Int)(y: Int)(z: Int): Boolean = x <= y && y == z
 
   val compositeFun: (Int => Int, Int => Int) => (Int => Int) = (f, g) => (x) => f(g(x))
-  
+
   def genCompositeFun[A](f: A => A, g: A => A): A => A = x => f(g(x))
+
+  val gcd: (Int, Int) => Int = (a, b) =>
+    (a, b) match
+      case _ if b == 0 => a
+      case _ if a > b => gcd(b, a % b)

@@ -47,4 +47,8 @@ class TaskTest:
     val f: Int => Int = x => x - 1
     assertEquals(9, genCompositeFun(f, _ * 2)(x))
 
+  @Test def greatestCommonDivisor(): Unit =
+    assertEquals(4, gcd(12, 8))
+    assertEquals(7, gcd(14, 7))
+    assertEquals(1, gcd(12, 7))
 
