@@ -27,3 +27,5 @@ object Task:
       case n if n >= 0 => "Positive"
       case _ => "Negative"
 
+  val isEmpty: String => Boolean = _ == ""
+  val neg: (String => Boolean) => (String => Boolean) = p => s => !p(s)
