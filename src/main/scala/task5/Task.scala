@@ -36,7 +36,7 @@ object Task2a:
       case _ => "Negative"
 
   val isEmpty: String => Boolean = _ == ""
-  val neg: (String => Boolean) => (String => Boolean) = p => s => !p(s)
+  val neg: (String => Boolean) => String => Boolean = p => s => !p(s)
 
   def genericNeg[A](p: A => Boolean): A => Boolean = (a: A) => !p(a)
 
@@ -60,17 +60,16 @@ object Task2a:
       assertFalse(genericNeg(isEmpty)(""))
       assertTrue(genericNeg(isPositive)(v))
 
-
 object Task2b:
   val p1: (Int, Int, Int) => Boolean = (x, y, z) => x <= y && y == z
 
   def p2(x: Int, y: Int, z: Int): Boolean = (x <= y) && (y == z)
 
-  val p3: (Int => Int => Int => Boolean) = x => y => z => x <= y && y == z
+  val p3: Int => Int => Int => Boolean = x => y => z => x <= y && y == z
 
   def p4(x: Int)(y: Int)(z: Int): Boolean = x <= y && y == z
 
-  val compFun: (Int => Int, Int => Int) => (Int => Int) = (f, g) => (x) => f(g(x))
+  val compFun: (Int => Int, Int => Int) => Int => Int = (f, g) => (x) => f(g(x))
   def genCompFun[A](f: A => A, g: A => A): A => A = x => f(g(x))
 
   class Task2bTest:
